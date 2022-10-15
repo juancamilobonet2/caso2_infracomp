@@ -1,3 +1,6 @@
-public class Envejecimiento extends Thread{
-    //TODO
+public class Envejecimiento extends Thread {
+
+    @Override
+    public void run() {
+    }
 }
