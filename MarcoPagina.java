@@ -44,4 +44,8 @@ public class MarcoPagina {
     public Boolean estaLibre(){
         return this.entradaActual == null;
     }
+
+    public int getNumero() {
+        return numero;
+    }
 }

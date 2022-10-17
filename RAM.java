@@ -13,23 +13,47 @@ public class RAM {
         }
     }
 
-    public synchronized MarcoPagina buscarMarco() {
-        MarcoPagina marcoMasViejo = null;
-        for (MarcoPagina marco : marcos) {
+    public MarcoPagina buscarMenosUtilizado() {
+        MarcoPagina marcoMenosUtilizado = null;
+
+        for(MarcoPagina marco : marcos) {
+            if (marcoMenosUtilizado == null) {
+                marcoMenosUtilizado = marco;
+            } else if (marcoMenosUtilizado.getEdad() > marco.getEdad()) {
+                //En nuestra implementacion, el mas viejo es el mas usado
+                marcoMenosUtilizado = marco;
+            }
+        }
+
+        return marcoMenosUtilizado;
+    }
+
+    public MarcoPagina buscarLibre() {
+        for(MarcoPagina marco : marcos) {
             if (marco.estaLibre()) {
                 return marco;
             }
-
-            if (marcoMasViejo == null){
-                marcoMasViejo = marco;
-            } else {
-                if (marcoMasViejo.getEdad() >= marco.getEdad()) {
-                    marcoMasViejo = marco;
-                }
-            }
-            
         }
-        return marcoMasViejo;
+
+        return null;
+    }
+
+    public synchronized EntradaPagina resolverFalla(EntradaPagina entrada){
+        //encontrar marco a reemplazar
+        MarcoPagina marco = buscarLibre();
+        EntradaPagina entradaReemplazada = null;
+
+        if(marco == null) {
+            marco = buscarMenosUtilizado();
+            entradaReemplazada = marco.getEntradaActual();
+            entradaReemplazada.setPresente(false);
+        }
+
+        marco.setEntradaActual(entrada);
+        entrada.setNumeroMarco(marco.getNumero());
+        entrada.setPresente(true);
+
+        return entradaReemplazada;
     }
 
     public synchronized void envejecerMarcos() {
