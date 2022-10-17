@@ -12,6 +12,7 @@ public class TLB {
     public EntradaPagina buscarPagina(int numeroPagina) {
         for (EntradaPagina entrada : tlb) {
             if (entrada.getNumeroPagina() == numeroPagina) {
+                entrada.marcarReferenciado();
                 return entrada;
             }
         }

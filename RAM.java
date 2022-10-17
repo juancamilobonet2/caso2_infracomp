@@ -53,6 +53,8 @@ public class RAM {
         entrada.setNumeroMarco(marco.getNumero());
         entrada.setPresente(true);
 
+        entrada.marcarReferenciado();
+
         return entradaReemplazada;
     }
 

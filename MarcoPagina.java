@@ -3,7 +3,7 @@ public class MarcoPagina {
     private Boolean referenciado;
     //Para edad, no se usa el bit mas significativo ya que este cambia el signo del entero
     //y despues habra problemas al buscar el marco mas viejo. Es decir, solo se usan 31 bits.
-    private int edad;
+    private long edad;
     private EntradaPagina entradaActual;
 
     public MarcoPagina(int numero) {
@@ -16,7 +16,7 @@ public class MarcoPagina {
     public void envejecer() {
         this.edad = this.edad / 0x2;
         if(this.referenciado) {
-            this.edad = this.edad + 0x40000000;
+            this.edad = this.edad + 0x4000000000000000L;
         }
         this.referenciado = false;
     }
@@ -29,7 +29,7 @@ public class MarcoPagina {
         this.referenciado = referenciado;
     }
 
-    public int getEdad() {
+    public long getEdad() {
         return edad;
     }
     

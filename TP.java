@@ -8,13 +8,17 @@ public class TP {
         this.ram = ram;
 
         for (int i = 0; i<64; i++) {
-            EntradaPagina entrada = new EntradaPagina(i);
+            EntradaPagina entrada = new EntradaPagina(i, ram);
             tablaPaginas.add(entrada);
         }
     }
 
     public EntradaPagina buscarPagina(int numeroPagina) {
-        return tablaPaginas.get(numeroPagina);
+        EntradaPagina entrada = tablaPaginas.get(numeroPagina);
+        if (entrada.getPresente()) {
+            entrada.marcarReferenciado();
+        }
+        return entrada;
     }
 
     public void cambiarPagina(int numeroPagina, int numeroMarco) {

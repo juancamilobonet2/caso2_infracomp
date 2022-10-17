@@ -2,16 +2,19 @@ public class EntradaPagina {
     private Boolean presente = false;
     private int numeroMarco;
     private int numeroPagina;
+    private RAM ram;
 
-    public EntradaPagina(int numeroPagina) {
+
+    public EntradaPagina(int numeroPagina, RAM ram) {
         this.numeroPagina = numeroPagina;
+        this.ram = ram;
     }
 
-    public void setPresente(Boolean presente) {
+    public synchronized void setPresente(Boolean presente) {
         this.presente = presente;
     }
 
-    public Boolean getPresente() {
+    public synchronized Boolean getPresente() {
         return presente;
     }
 
@@ -25,5 +28,9 @@ public class EntradaPagina {
 
     public int getNumeroPagina() {
         return numeroPagina;
+    }
+
+    public void marcarReferenciado() {
+        ram.marcarReferenciado(numeroMarco);
     }
 }
