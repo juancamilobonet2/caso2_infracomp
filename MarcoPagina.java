@@ -15,7 +15,7 @@ public class MarcoPagina {
     
     public void envejecer() {
         this.edad = this.edad / 0x2;
-        if(this.referenciado) {
+        if(Boolean.TRUE.equals(this.referenciado)) {
             this.edad = this.edad + 0x4000000000000000L;
         }
         this.referenciado = false;
