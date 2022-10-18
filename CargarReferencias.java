@@ -31,7 +31,6 @@ public class CargarReferencias extends Thread{
             //Si no esta, falla pagina
             //en todos los casos, actualizar tlb
             EntradaPagina entrada = tlb.buscarPagina(ref);
-            tiempoDirecciones += 2;
 
             if(entrada==null || !entrada.getPresente()) {
                 //No esta en tlb
@@ -53,16 +52,23 @@ public class CargarReferencias extends Thread{
                     //Segunda lectura en TP
                     tiempoDirecciones += 30;
                 }
+                else{
+                    //Si esta en tp
+                    //lectura ram
+                    tiempoDatos += 30;
+                }
                 
             }
             else{
                 //System.out.println("Se encontro en tlb : " + ref);
                 //Si esta en tlb
+                
+                tiempoDirecciones += 2;
                 hits += 1;
-            }
 
-            //En todos los casos, hay una lectura en ram
-            tiempoDatos += 30;
+                //lectura ram
+                tiempoDatos += 30;
+            }
  
             //Actualizar tlb
             tlb.agregarPagina(entrada);
