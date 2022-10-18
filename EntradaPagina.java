@@ -10,11 +10,11 @@ public class EntradaPagina {
         this.ram = ram;
     }
 
-    public synchronized void setPresente(Boolean presente) {
+    public void setPresente(Boolean presente) {
         this.presente = presente;
     }
 
-    public synchronized Boolean getPresente() {
+    public Boolean getPresente() {
         return presente;
     }
 

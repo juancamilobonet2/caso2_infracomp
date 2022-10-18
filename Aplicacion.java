@@ -19,13 +19,8 @@ public class Aplicacion {
             Scanner fileReader = new Scanner(file);
             ArrayList<Integer> referencias = new ArrayList<Integer>();
 
-            while(fileReader.hasNextLine()) {
-                if (fileReader.hasNextInt()) {
+            while(fileReader.hasNextInt()) {
                     referencias.add(fileReader.nextInt());
-                }
-                else {
-                    fileReader.next();
-                }
             }
             fileReader.close();
 

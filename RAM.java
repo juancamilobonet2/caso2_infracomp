@@ -13,7 +13,7 @@ public class RAM {
         }
     }
 
-    public MarcoPagina buscarMenosUtilizado() {
+    public synchronized MarcoPagina buscarMenosUtilizado() {
         MarcoPagina marcoMenosUtilizado = null;
 
         for(MarcoPagina marco : marcos) {
@@ -28,7 +28,7 @@ public class RAM {
         return marcoMenosUtilizado;
     }
 
-    public MarcoPagina buscarLibre() {
+    public synchronized MarcoPagina buscarLibre() {
         for(MarcoPagina marco : marcos) {
             if (marco.estaLibre()) {
                 return marco;
